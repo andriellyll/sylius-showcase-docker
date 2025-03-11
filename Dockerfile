@@ -90,9 +90,10 @@ RUN npm install -g yarn && npm cache clean --force \
     && yarn install  \
     && yarn build
 
-RUN echo "web_profiler:\n \
-  toolbar: false\n \
-  intercept_redirects: false\n" > /app/config/packages/dev/web_profiler.yaml
+RUN mkdir -p /app/config/packages/dev && \
+    echo "web_profiler:\n \
+    toolbar: false\n \
+    intercept_redirects: false\n" > /app/config/packages/dev/web_profiler.yaml
 
 COPY .docker/liip_imagine.yaml        /app/config/packages/liip_imagine.yaml
 RUN chown -R 33:33 /app/var 
